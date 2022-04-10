@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 This project was developed as apart of our CSCI313 - Software Dev. w/ Frameworks class and was made by the following contributers.
 - [Cole Gartner](https://github.com/FerisJumbo)
-- [Cayden Schmandt]
+- [Cayden Schmandt](https://github.com/CaydenS01)
 - [Hoang Che](https://github.com/hoangche08)
 - [Jason Fetch](https://github.com/jasonfetch)
 
