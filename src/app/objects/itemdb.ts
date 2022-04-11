@@ -32,7 +32,7 @@ export let ITEMS: Item[] = [
         seller: "Test Seller 2"
     },
     {
-        id: 3,
+        id: 4,
         name: "Test Case",
         price: 153.10,
         stockAmount: 2,
@@ -42,7 +42,7 @@ export let ITEMS: Item[] = [
         seller: "Test Seller 1"
     },
     {
-        id: 4,
+        id: 5,
         name: "Test Motherboard",
         price: 342.89,
         stockAmount: 11,
@@ -52,7 +52,7 @@ export let ITEMS: Item[] = [
         seller: "Test Seller 2"
     },
     {
-        id: 5,
+        id: 6,
         name: "Test Storage",
         price: 40.00,
         stockAmount: 25,
@@ -62,7 +62,7 @@ export let ITEMS: Item[] = [
         seller: "Test Seller 2"
     },
     {
-        id: 6,
+        id: 7,
         name: "Test PSU",
         price: 435.23,
         stockAmount: 1342,

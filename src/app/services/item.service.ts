@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Item } from '../objects/item';
 import { ITEMS } from '../objects/itemdb';
 
@@ -9,18 +10,33 @@ export class ItemService {
 
   constructor() { }
 
-  getItems(): Item[] {
-    return ITEMS;
+  getItems(): Observable<Item[]> {
+    return of(ITEMS);
+  }
+
+  getItemByID(id: number): Observable<Item> {
+    let item: Item = new Item();
+    ITEMS.forEach((value) => {
+      let done: boolean = false;
+      if (!done) {
+        if (value.id === id) {
+          item = value;
+          done = true;
+        }
+      }
+      return;
+    });
+    return of(item);
   }
 
   // TODO when account service is finished
-  // getItemsBySeller(seller: Seller): Item[] {
-  //   return ITEMS;
+  // getItemsBySeller(seller: Seller): Observalbe<Item[]> {
+  //   return of(ITEMS);
   // }
 
   // TODO when firebase is setup
-  // searchItems(search: String, keywords: String[]): Item[] {
-  //   return null;
+  // searchItems(search: String, keywords: String[]): Observalbe<Item[]> {
+  //   return of(ITEMS);
   // }
 
   addItem(item: Item): void {
@@ -28,11 +44,11 @@ export class ItemService {
   }
 
   deleteItemByItem(item: Item): void {
-    this.deleteItemByIndex(this.getItems().indexOf(item));
+    this.deleteItemByIndex(ITEMS.indexOf(item));
   }
 
   deleteItemByIndex(i: number): void {
-    this.getItems().splice(i, 1);
+    ITEMS.splice(i, 1);
   }
 
 }

@@ -1,0 +1,13 @@
+<div *ngIf="item.id >= 1">
+    <h4>ID: {{item.id}}</h4>
+    <h4>Name: {{item.name}}</h4>
+    <h4>Price: ${{item.price}}</h4>
+    <h4>Stock: {{item.stockAmount}}</h4>
+    <h4>Image: {{item.image}}</h4>
+    <h4>Keywords: {{item.keywords}}</h4>
+    <h4>Part Type: {{item.partType}}</h4>
+    <h4>Seller: {{item.seller}}</h4>
+</div>
+<div *ngIf="item.id < 1">
+    <p>No item exists</p>
+</div>
