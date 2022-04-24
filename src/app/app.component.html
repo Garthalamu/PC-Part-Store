@@ -1,3 +1,10 @@
+<label for="name">Name:</label>
+<input [(ngModel)]="name" type="text" id="name">
+<label for="price">Price:</label>
+<input [(ngModel)]="price" type="text" id="price">
+
+<button (click)="addItem()">Add Item</button>
+
 <div *ngFor="let item of items">
   <a routerLink="item/{{item.id}}">{{item.name}}</a>
 </div>

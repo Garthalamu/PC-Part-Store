@@ -19,17 +19,21 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get("id"))
-    this.getHero();
+    this.getItem();
+    console.log(this.item);
   }
 
   ngDoCheck(): void {
     if (this.id != Number(this.route.snapshot.paramMap.get("id"))) {
       this.id = Number(this.route.snapshot.paramMap.get("id"))
-      this.getHero();
+      this.getItem();
     }
   }
 
-  getHero(): void {
-    this.itemService.getItemByID(this.id).subscribe(item => this.item = item);
+  getItem(): void {
+    this.itemService.getItemByID(this.id).subscribe(data => {
+      this.item = data;
+      console.log(data);
+    });
   }
 }
