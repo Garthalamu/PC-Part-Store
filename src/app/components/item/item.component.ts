@@ -13,6 +13,9 @@ export class ItemComponent implements OnInit {
   id: number = -1;
   item: Item = new Item();
 
+  amountToAdd: number = 1;
+  totalPrice: number = -1;
+
   baseItem: Item = new Item();
 
   constructor(private route: ActivatedRoute, private itemService: ItemService) { }
@@ -28,6 +31,15 @@ export class ItemComponent implements OnInit {
       this.id = Number(this.route.snapshot.paramMap.get("id"))
       this.getItem();
     }
+    this.totalPrice = Math.round(this.amountToAdd * this.item.price*100)/100;
+  }
+
+  minus(): void {
+    this.amountToAdd = this.amountToAdd > 1 ? this.amountToAdd - 1 : 1;
+  }
+
+  add(): void {
+    this.amountToAdd = this.amountToAdd < this.item.stockAmount ? this.amountToAdd + 1 : this.amountToAdd;
   }
 
   getItem(): void {
