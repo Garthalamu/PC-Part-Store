@@ -9,7 +9,7 @@ import { ItemService } from './services/item.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'PC-Part-Store';
+  title = 'PC Part Store';
 
   name: String = "";
   price: number = 0;
