@@ -9,6 +9,8 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class CartComponent implements OnInit {
 
+  total : number = 0;
+
   constructor() { }
 
   ngOnInit(): void {

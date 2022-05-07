@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/objects/item';
 import { ItemService } from 'src/app/services/item.service';
@@ -16,6 +16,7 @@ export class ItemComponent implements OnInit {
   item: Item = new Item();
 
   amountToAdd: number = 1;
+  @Input()
   totalPrice: number = -1;
 
   baseItem: Item = new Item();

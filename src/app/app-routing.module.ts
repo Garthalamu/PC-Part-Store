@@ -8,6 +8,12 @@ const routes: Routes = [
   { path: 'item', component: ItemComponent },
   { path: 'cart', component: CartComponent },
   { path: 'build', component: BuildComponent },
+  { path: 'cpu', component: ItemComponent },
+  { path: 'motherboard', component: CartComponent },
+  { path: 'gpu', component: BuildComponent },
+  { path: 'storage', component: ItemComponent },
+  { path: 'power supply', component: CartComponent },
+  { path: 'monitor', component: BuildComponent },
 ];
 
 @NgModule({

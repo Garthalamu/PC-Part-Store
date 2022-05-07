@@ -6,4 +6,10 @@ export class Item {
     keywords?: String[] = [];
     partType: String = "";
     seller: String = ""; // TODO change to an account type
+
+
+
+    getPartType(i : Item) {
+        return this.partType;
+    }
 } 
