@@ -11,6 +11,7 @@ import { map } from "rxjs/operators";
 export class UserService {
 
   signedIn = {
+    id: 0,
     userName: '',
     password: '',
     email: '',
@@ -18,6 +19,7 @@ export class UserService {
   };
 
   signOut = {
+    id: 0,
     userName: '',
     password: '',
     email: '',
@@ -66,10 +68,11 @@ export class UserService {
 
   logOut() {
     this.signedIn = {
-      userName:  '',
-      password: '',
-      email: '',
-      ccNumber: ''
+      id: 0,
+      userName:  'null',
+      password: 'null',
+      email: 'null',
+      ccNumber: 'null'
 
     };
 
