@@ -18,6 +18,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { ItemCreatorComponent } from './components/item-creator/item-creator.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HttpClient } from '@angular/common/http';
     AppComponent,
     ItemComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ItemCreatorComponent
   ],
   imports: [
     BrowserModule,

@@ -22,12 +22,8 @@ export class AppComponent {
     this.getItems();
   }
 
-  addItem(): void {
-    let item = new Item();
-    item.name = this.name;
-    item.price = this.price;
-
-    this.itemService.addItem(item);
+  ngOnChange(): void {
+    this.getItems()
   }
 
   getItems(): void {

@@ -1,4 +1,8 @@
 <div class="mt-4">
     <router-outlet></router-outlet>
 </div>
-<app-item [itemid]="2"></app-item>
+<div *ngFor="let item of items">
+    <div class="m-2">
+        <app-item [itemid]="item.id"></app-item>
+    </div>
+</div>

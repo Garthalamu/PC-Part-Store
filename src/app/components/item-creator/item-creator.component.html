@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Item Creator Interface
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="name">Item Name:</label>
+                    <input #name type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input #price type="number" class="form-control" id="price">
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stock:</label>
+                    <input #stock type="number" class="form-control" id="stock">
+                </div>
+                <div class="form-group">
+                    <label for="parttype">Part Type:</label>
+                    <select #parttype id="parttype" class="form-control">
+                        <option>cpu</option>
+                        <option>gpu</option>
+                        <option>motherboard</option>
+                        <option>storage</option>
+                        <option>ram</option>
+                        <option>psu</option>
+                        <option>fan</option>
+                        <option>case</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="reset" value="Clear Data" class="btn btn-warning mt-4" style="width: 100%;">
+                </div>
+                <button type="submit" class=" mt-1 btn btn-outline-dark" style="width: 100%;" (click)="submit(name, price, stock, parttype)">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
