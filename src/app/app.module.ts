@@ -21,11 +21,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 import { AuthService } from './service/auth';
 import { environment } from 'src/environments/environment';
+import { FiltersComponent } from './components/filters/filters.component';
 @NgModule({
   declarations: [
     AppComponent,
 <<<<<<< HEAD
-    ItemComponent
+    ItemComponent,
+FiltersComponent
 =======
     LoginComponent,
     RegisterComponent
