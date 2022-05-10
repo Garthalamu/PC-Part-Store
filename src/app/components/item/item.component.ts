@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/objects/item';
 import { ItemService } from 'src/app/services/item.service';
@@ -10,8 +10,7 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class ItemComponent implements OnInit {
 
-  id: number = -1;
-  item: Item = new Item();
+  @Input() item: Item = new Item();
 
   amountToAdd: number = 1;
   totalPrice: number = -1;
@@ -21,16 +20,11 @@ export class ItemComponent implements OnInit {
   constructor(private route: ActivatedRoute, private itemService: ItemService) { }
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get("id"))
     this.getItem();
     console.log(this.item);
   }
 
   ngDoCheck(): void {
-    if (this.id != Number(this.route.snapshot.paramMap.get("id"))) {
-      this.id = Number(this.route.snapshot.paramMap.get("id"))
-      this.getItem();
-    }
     this.totalPrice = Math.round(this.amountToAdd * this.item.price*100)/100;
   }
 
@@ -43,7 +37,7 @@ export class ItemComponent implements OnInit {
   }
 
   getItem(): void {
-    this.itemService.getItemByID(this.id).subscribe(data => {
+    this.itemService.getItemByID(this.item.id).subscribe(data => {
       this.item = data;
       console.log(data);
     });
