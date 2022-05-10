@@ -48,4 +48,8 @@ export class ItemComponent implements OnInit {
       console.log(data);
     });
   }
+
+  addToCart(): void {
+    // Add the item to the cart
+  }
 }

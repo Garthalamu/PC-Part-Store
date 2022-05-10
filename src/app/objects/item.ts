@@ -3,7 +3,5 @@ export class Item {
     name: String = "";
     price: number = -1;
     stockAmount: number = -1;
-    keywords?: String[] = [];
     partType: String = "";
-    seller: String = ""; // TODO change to an account type
 }
