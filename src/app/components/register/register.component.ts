@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/service/auth';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-register',
@@ -8,9 +8,21 @@ import { AuthService } from 'src/app/service/auth';
 })
 export class RegisterComponent implements OnInit {
 
+  successIndication: boolean = true;
+  ifEmpty : boolean = false;
+
+  createAccount(userName: string, password: string, email: string, ccNumber: string) {
+    if(userName.trim() == "" || password.trim() == "" || email.trim() == "" || ccNumber.trim() == "") {
+      this.ifEmpty = true;
+    }
+    else {
+      this.successIndication = this.accountServ.addAcount(userName, password, email, ccNumber);
+      this.ifEmpty = false;
+    }
+  }
 
 
-  constructor(private authServ: AuthService) { }
+  constructor(private accountServ: UserService) { }
 
   onSubmit() {
 
