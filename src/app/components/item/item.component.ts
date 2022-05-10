@@ -10,7 +10,8 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class ItemComponent implements OnInit {
 
-  @Input() item: Item = new Item();
+  @Input() itemid: number = -1;
+  item: Item = new Item();
 
   amountToAdd: number = 1;
   totalPrice: number = -1;
@@ -37,7 +38,7 @@ export class ItemComponent implements OnInit {
   }
 
   getItem(): void {
-    this.itemService.getItemByID(this.item.id).subscribe(data => {
+    this.itemService.getItemByID(this.itemid).subscribe(data => {
       this.item = data;
       console.log(data);
     });

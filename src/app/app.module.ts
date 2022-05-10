@@ -33,7 +33,6 @@ import { HttpClient } from '@angular/common/http';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    HttpClient,
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,

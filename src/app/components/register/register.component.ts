@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -19,10 +20,14 @@ export class RegisterComponent implements OnInit {
       this.successIndication = this.accountServ.addAcount(userName, password, email, ccNumber);
       this.ifEmpty = false;
     }
+
+    if (this.successIndication) {
+      this.router.navigate(['/', 'login']);
+    }
   }
 
 
-  constructor(private accountServ: UserService) { }
+  constructor(private accountServ: UserService, private router: Router) { }
 
   onSubmit() {
 

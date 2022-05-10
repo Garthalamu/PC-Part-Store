@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { User } from 'src/app/service/user';
+import { User } from '../objects/user';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
@@ -78,7 +78,12 @@ export class UserService {
 
   }
 
-  addAcount(userName: string, password: string, email: string, ccNumber: string) {
+  addAcount(userName: string, password: string, email: string, ccNumber: string): boolean {
+    // Checks to see if at least the userName and password strings are filled out
+    if (userName == null || password == null) {
+      return false;
+    }
+
     if (userName.trim() != "" && password.trim() != "" && email.trim() && ccNumber.trim() != "" ) {
       if (this.userNameDupCheck(userName)) {
         var newUser = {
