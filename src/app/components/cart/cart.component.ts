@@ -33,7 +33,6 @@ export class CartComponent implements OnInit {
     this.amountToAdd = this.amountToAdd > 1 ? this.amountToAdd - 1 : 1;
  }
  createCart(items : Item[] ){
-    this.userService.signedIn
     this.cartItems = items;
  }
  removeFromCart() : void {
