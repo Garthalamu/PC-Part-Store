@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CartComponent implements OnInit {
 
-  @Input()  
+   
   cartItems : Item[] = []
   
   amountToAdd: number = 1;
@@ -33,6 +33,7 @@ export class CartComponent implements OnInit {
     this.amountToAdd = this.amountToAdd > 1 ? this.amountToAdd - 1 : 1;
  }
  createCart(items : Item[] ){
+    this.userService.signedIn
     this.cartItems = items;
  }
  removeFromCart() : void {
