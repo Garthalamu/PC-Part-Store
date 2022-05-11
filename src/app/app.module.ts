@@ -27,7 +27,8 @@ import { ItemCreatorComponent } from './components/item-creator/item-creator.com
     LoginComponent,
     RegisterComponent,
     ItemCreatorComponent,
-    RegisterComponent
+    RegisterComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
