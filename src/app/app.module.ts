@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ItemComponent } from './components/item/item.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 import { FiltersComponent } from './components/filters/filters.component';
 import { HttpClient } from '@angular/common/http';
 import { ItemCreatorComponent } from './components/item-creator/item-creator.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ItemCreatorComponent } from './components/item-creator/item-creator.com
     RegisterComponent,
     ItemCreatorComponent,
     RegisterComponent,
-    FiltersComponent
+    FiltersComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { ItemCreatorComponent } from './components/item-creator/item-creator.com
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgbCollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
