@@ -4,4 +4,5 @@ export class Item {
     price: number = -1;
     stockAmount: number = -1;
     partType: String = "";
+
 }

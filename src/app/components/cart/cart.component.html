@@ -1,9 +1,8 @@
-<div>
-    <button type="button" class="btn btn-primary" (click)="initItem1()">All Products</button>
-    <a routerLink="/cart" type="button" class="btn btn-secondary">Cart</a>
+<a routerLink="/dashboard" type="button" class="btn btn-secondary">Back to Dashboard</a>
+<app-dashboard (passArray)="createCart($event)"></app-dashboard>
 
-</div>
-<div *ngFor="let item of items">
+<h1>Your Cart</h1>
+<div *ngFor="let item of cartItems">
     <div *ngIf="item.id >= 1">
         <div class="bg-dark text-light p-2">
             <div class="container">
@@ -28,7 +27,7 @@
                                     <span class="input-group-text">${{totalPrice}}</span>
                                 </div>
                                 <div class="input-group d-flex justify-content-center">
-                                    <button class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
+                                    <button class="btn btn-primary" (click)="removeFromCart()">Add to Cart</button>
                                 </div>
                             </div>
                         </div>

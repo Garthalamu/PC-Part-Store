@@ -56,4 +56,18 @@ export class ItemService {
       this.http.post(this.dbURL, item).subscribe(data => console.log(data));
     });
   }
+
+  getName(item : Item) : String {
+    return item.name;
+  }
+  getPrice(item : Item) : number {
+    return item.price;
+  }
+  getStockAmount(item : Item) : number {
+    return item.stockAmount;
+  }
+  getPartType(item : Item) : String {
+    return item.partType;
+  }
+
 }

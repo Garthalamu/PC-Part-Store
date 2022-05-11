@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CartComponent } from './components/cart/cart.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -28,7 +30,9 @@ import { ItemCreatorComponent } from './components/item-creator/item-creator.com
     RegisterComponent,
     ItemCreatorComponent,
     RegisterComponent,
-    FiltersComponent
+    FiltersComponent,
+    DashboardComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

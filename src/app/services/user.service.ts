@@ -14,7 +14,7 @@ export class UserService {
     userName: '',
     password: '',
     email: '',
-    ccNumber: ''
+    ccNumber: '',
   };
 
   signOut = {
@@ -71,7 +71,7 @@ export class UserService {
       userName:  'null',
       password: 'null',
       email: 'null',
-      ccNumber: 'null'
+      ccNumber: 'null',
 
     };
 
