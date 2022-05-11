@@ -1,1 +1,5 @@
-<p>dashboard works!</p>
+<div class="container" *ngFor="let item of items">
+    <div class="mt-2">
+        <app-item [itemid]="item.id"></app-item>
+    </div>
+</div>
