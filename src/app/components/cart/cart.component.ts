@@ -14,6 +14,10 @@ export class CartComponent implements OnInit {
 
    
   itemCart : ItemsToPurchase[] = []
+  mess : String [] = []
+  checkoutMessage1 : String = "Thank you for your purchase!";
+  checkoutmessage2 : String = "Enjoy your items!";
+
   
   amountToAdd: number = 1;
   totalPrice: number = -1;
@@ -43,27 +47,29 @@ export class CartComponent implements OnInit {
  }
  removeItem(cart : ItemsToPurchase) : void {
    let n : number = this.userService.signedIn.cart.indexOf(cart);
+   this.userService.signedIn.cart[n].amount = 0;
    this.userService.signedIn.cart.slice(n, 1);
  }
  getTotalCost() : number {
+    let newArray : String [] = []
     this.totalCost = 0;
     let cartLength : number = this.userService.signedIn.cart.length;
    for (let start : number = 0; start < cartLength; start++){
       this.totalCost = this.totalCost + (this.userService.signedIn.cart[start].item.price * this.userService.signedIn.cart[start].amount);
    }
+   this.mess = newArray;
    return this.totalCost;
  }
  checkout() : void {
    let newArray : ItemsToPurchase[] = []
-   this.userService.signedIn.cart = newArray;
-   /*let cartLength : number = this.userService.signedIn.cart.length;
+   let cartLength : number = this.userService.signedIn.cart.length;
    for (let start : number = 0; start < cartLength; start++){
-      this.userService.signedIn.cart.pop();
-    }*/
+      this.userService.signedIn.cart[start].amount = 0;
+    }
+    this.userService.signedIn.cart = newArray;
     this.ngOnInit()
- }
- resetCost() : void {
-    this.totalCost = 0;
+    this.mess.push(this.checkoutMessage1);
+    this.mess.push(this.checkoutmessage2);
  }
 
 }
