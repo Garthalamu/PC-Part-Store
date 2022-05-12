@@ -1,4 +1,3 @@
-import { Item } from "./item";
 import { ItemsToPurchase } from "./itemsToPurchase";
 
 export class User {
