@@ -1,33 +1,23 @@
 <a routerLink="/dashboard" type="button" class="btn btn-secondary">Back to Dashboard</a>
-<!----<app-dashboard (passArray)="createCart($event)"></app-dashboard>--->
 
 <h1>Your Cart</h1>
-<div *ngFor="let item of cartItems">
-    <div *ngIf="item.id >= 1">
+<div *ngFor="let cart of itemCart">
+    <div><br>
         <div class="bg-dark text-light p-2">
             <div class="container">
-                <h2 class="text-center">{{item.name}}</h2>
+                <h2 class="text-center">{{cart.item.name}}</h2>
                 <div class="container">
                     <div class="row">
                         <div class="col text-center">
-                            <div *ngIf="item.stockAmount > 0">
-                                <h3>{{item.stockAmount}} in Stock</h3>
-                            </div>
-                            <div *ngIf="item.stockAmount <= 0">
-                                <h3>Out of Stock</h3>
-                            </div>
-                            <h3>Price per Part: ${{item.price}}</h3>
+                                <h3>Quantity: {{cart.amount}}</h3>
+                            <h3>Cost Per Part: ${{cart.item.price}}</h3>
                         </div>
                         <div class="col">
-                            <div class="container" *ngIf="item.stockAmount > 0">
+                            <div class="container" *ngIf="cart.item.stockAmount > 0">
                                 <div class="input-group d-flex justify-content-center mb-1">
-                                    <button class="btn btn-secondary" (click)="minus()">-</button>
-                                    <span class="input-group-text">{{amountToAdd}}</span>
-                                    <button class="btn btn-secondary" (click)="add(item)">+</button>
-                                    <span class="input-group-text">${{totalPrice}}</span>
-                                </div>
-                                <div class="input-group d-flex justify-content-center">
-                                    <button class="btn btn-primary" (click)="removeFromCart()">Add to Cart</button>
+                                    <button class="btn btn-secondary" (click)="removeItem(cart)">Remove</button>
+                                    <button class="btn btn-secondary" (click)="minus(cart)">-</button>
+                                    <button class="btn btn-secondary" (click)="add(cart)">+</button>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +26,6 @@
             </div>
         </div>
     </div>
-    <div *ngIf="item.id < 1">
-        <p>No item exists</p>
-    </div>
 </div>
+<h1>Total: ${{getTotalCost()}}</h1>
+<button class="btn btn-secondary" (click)="checkout()">Checkout</button>

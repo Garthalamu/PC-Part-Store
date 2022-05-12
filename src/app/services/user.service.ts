@@ -1,41 +1,49 @@
 import { Injectable } from '@angular/core';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { User } from '../objects/user';
+import { ItemsToPurchase } from '../objects/itemsToPurchase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  signedIn = {
-    id: 0,
-    userName: '',
-    password: '',
-    email: '',
-    ccNumber: '',
-  };
+  signedIn = new User();
 
-  signOut = {
-    id: 0,
-    userName: '',
-    password: '',
-    email: '',
-    ccNumber: ''
-  };
+  signOut = new User();
 
-  users: any;
+  users: User[] = [];
 
   getPassword(password: string) {
     return password;
   }
 
+  getSignedInUser(): User {
+    delete this.users[this.users.indexOf(this.signedIn)]
+    return this.signedIn;
+  }
+
+  updateUsersCart(user: User): void {
+    this.http.delete("https://pc-parts-store-db-default-rtdb.firebaseio.com/" + "Account.json").subscribe(data => {
+      this.users.push(user);
+      for (let u of this.users) {
+        this.http.post("https://pc-parts-store-db-default-rtdb.firebaseio.com/" + "Account.json",
+          u).subscribe();
+      }
+    })
+  }
+
   IdGenerator() {
     var num = 1;
     for (var i = 0; i < this.users.length; i++) {
-      if (this.users[i].id >= num) {
-        num = this.users[i].id;
+      try {
+        if (this.users[i].id >= num) {
+          num = this.users[i].id;
+        }
+      }
+      catch {
+        continue;
       }
     }
     return ++num;
@@ -66,14 +74,7 @@ export class UserService {
   }
 
   logOut() {
-    this.signedIn = {
-      id: 0,
-      userName:  'null',
-      password: 'null',
-      email: 'null',
-      ccNumber: 'null',
-
-    };
+    this.signedIn = new User();
 
   }
 
@@ -85,19 +86,17 @@ export class UserService {
 
     if (userName.trim() != "" && password.trim() != "" && email.trim() && ccNumber.trim() != "" ) {
       if (this.userNameDupCheck(userName)) {
-        var newUser = {
-          id: this.IdGenerator,
-          userName: userName,
-          password: this.getPassword(password),
-          email: email,
-          ccNumber: ccNumber
-        };
+        var newUser: User = new User();
+        newUser.id = this.IdGenerator(),
+        newUser.userName = userName;
+        newUser.password = this.getPassword(password);
+        newUser.email = email;
+        newUser.cart = [];
         this.http.post(
             "https://pc-parts-store-db-default-rtdb.firebaseio.com/" +
               "Account.json",
             newUser
-          )
-          .subscribe(data => (this.users = data));
+          ).subscribe();
         this.users.push(newUser);
         this.login(userName, password);
 
@@ -121,7 +120,7 @@ export class UserService {
       })
     )
     .subscribe(data => (this.users = data));
-}
-
+  }
+  
 
 }

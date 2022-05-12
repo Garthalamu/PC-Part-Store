@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Item } from './objects/item';
 import { ItemService } from './services/item.service';
 

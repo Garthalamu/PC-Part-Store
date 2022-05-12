@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/objects/item';
+import { ItemsToPurchase } from 'src/app/objects/itemsToPurchase';
+import { User } from 'src/app/objects/user';
 import { ItemService } from 'src/app/services/item.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-item',
@@ -16,9 +19,15 @@ export class ItemComponent implements OnInit {
   amountToAdd: number = 1;
   totalPrice: number = -1;
 
+  currUser: User = new User();
+
   baseItem: Item = new Item();
 
-  constructor(private route: ActivatedRoute, private itemService: ItemService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private itemService: ItemService,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     this.getItem();
@@ -45,6 +54,17 @@ export class ItemComponent implements OnInit {
   }
 
   addToCart(): void {
-    // Add the item to the cart
+    this.currUser = this.userService.getSignedInUser();
+
+    let purchase = new ItemsToPurchase();
+    purchase.amount = this.amountToAdd;
+    purchase.item = this.item;
+
+    if (this.currUser.cart == null) {
+      this.currUser.cart = [];
+    }
+    this.currUser.cart.push(purchase);
+
+    this.userService.updateUsersCart(this.currUser);
   }
 }

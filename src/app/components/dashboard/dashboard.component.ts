@@ -12,43 +12,12 @@ import { CartComponent } from '../cart/cart.component';
 })
 export class DashboardComponent implements OnInit {
 
-  @Output() passArray = new EventEmitter<any>();
-  items : Item[] = []
-  cartArray : Item[] = []
-  //itemList : Observable<Item[]> = []
-  
-  amountToAdd: number = 1;
-  totalPrice: number = -1;
+  items: Item[] = [];
 
-
-  constructor(private itemService: ItemService) { }
-
-
-
-  getAllProducts() : void {
-    this.itemService.getItems().subscribe(data => {
-      this.items = data;
-    });
-  }
-  initItem1() : void {
-  } 
+  constructor(private itemServ: ItemService) { }
 
   ngOnInit(): void {
-    this.itemService.getItems().subscribe(data => {
-      this.items = data;
-    });
-  }
-  add(item : Item): void {
-    this.amountToAdd = this.amountToAdd < this.itemService.getStockAmount(item) ? this.amountToAdd + 1 : this.amountToAdd;
-  }
-  minus(): void {
-    this.amountToAdd = this.amountToAdd > 1 ? this.amountToAdd - 1 : 1;
-  }
-  addToCart(item : Item) : void {
-    this.cartArray.push(item);
-  }
-  emitCart() {
-    this.passArray.emit(1);
+    this.itemServ.getItems().subscribe(data => this.items = data)
   }
 
 

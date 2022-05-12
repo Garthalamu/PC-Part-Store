@@ -3,6 +3,8 @@ import { Item } from 'src/app/objects/item';
 import { ItemService } from 'src/app/services/item.service';
 import { Observable, tap, merge } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { createDirectiveTypeParams } from '@angular/compiler/src/render3/view/compiler';
+import { ItemsToPurchase } from 'src/app/objects/itemsToPurchase';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +13,11 @@ import { UserService } from 'src/app/services/user.service';
 export class CartComponent implements OnInit {
 
    
-  cartItems : Item[] = []
+  itemCart : ItemsToPurchase[] = []
   
   amountToAdd: number = 1;
   totalPrice: number = -1;
+  totalCost : number = 0;
 
 
   constructor(private itemService: ItemService, private userService: UserService) { }
@@ -22,21 +25,45 @@ export class CartComponent implements OnInit {
 
 
  ngOnInit(): void {
+    let cartLength : number = this.userService.signedIn.cart.length;
+    for (let start : number = 0; start < cartLength; start++){
+      this.itemCart.push(this.userService.signedIn.cart[start])
+    }
      
  }
 
- add(item : Item): void {
-    this.amountToAdd = this.amountToAdd < this.itemService.getStockAmount(item) ? this.amountToAdd + 1 : this.amountToAdd;
+ add(item : ItemsToPurchase): void {
+   let n : number = this.userService.signedIn.cart.indexOf(item);
+   this.userService.signedIn.cart[n].amount++;
  }
 
- minus(): void {
-    this.amountToAdd = this.amountToAdd > 1 ? this.amountToAdd - 1 : 1;
+ minus(item : ItemsToPurchase): void {
+    let n : number = this.userService.signedIn.cart.indexOf(item);
+    this.userService.signedIn.cart[n].amount--;
  }
- createCart(items : Item[] ){
-    this.cartItems = items;
+ removeItem(cart : ItemsToPurchase) : void {
+   let n : number = this.userService.signedIn.cart.indexOf(cart);
+   this.userService.signedIn.cart.slice(n, 1);
  }
- removeFromCart() : void {
-
+ getTotalCost() : number {
+    this.totalCost = 0;
+    let cartLength : number = this.userService.signedIn.cart.length;
+   for (let start : number = 0; start < cartLength; start++){
+      this.totalCost = this.totalCost + (this.userService.signedIn.cart[start].item.price * this.userService.signedIn.cart[start].amount);
+   }
+   return this.totalCost;
+ }
+ checkout() : void {
+   let newArray : ItemsToPurchase[] = []
+   this.userService.signedIn.cart = newArray;
+   /*let cartLength : number = this.userService.signedIn.cart.length;
+   for (let start : number = 0; start < cartLength; start++){
+      this.userService.signedIn.cart.pop();
+    }*/
+    this.ngOnInit()
+ }
+ resetCost() : void {
+    this.totalCost = 0;
  }
 
 }
