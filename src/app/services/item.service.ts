@@ -84,4 +84,18 @@ export class ItemService {
 getStockAmount(item : Item) : number {
   return item.stockAmount;
 }
+
+purgeDataBase(): void {
+  let firstItems: Item[] = [];
+  let allItems: Item[] = [];
+  this.getItems().subscribe(data => allItems = data);
+  for (let i : number = 0; i < 34; i++) {
+    firstItems[i] = allItems[i];
+  }
+  this.http.delete(this.dbURL).subscribe(data => {
+    for (let i of firstItems) {
+      this.http.post(this.dbURL, i).subscribe();
+    }
+  });
+}
 }

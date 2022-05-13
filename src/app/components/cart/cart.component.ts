@@ -75,11 +75,11 @@ export class CartComponent implements OnInit {
  updateStock() : void {
   let cartLength : number = this.userService.signedIn.cart.length;
   for (let start : number = 0; start < cartLength; start++){
-    let amountToDrop : number = (this.userService.signedIn.cart[start].amount * -1);
+    let amountToDrop : number = (this.userService.signedIn.cart[start].amount);
     let id : number = this.userService.signedIn.cart[start].item.id
     let dataItem : Item = new Item();
     this.itemService.getItemByID(id).subscribe(data => dataItem = data);
-    this.itemService.updateItemStock(dataItem,  amountToDrop);
+    // this.itemService.updateItemStock(dataItem, -amountToDrop);
   }
  }
 
