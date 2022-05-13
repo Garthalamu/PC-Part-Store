@@ -61,6 +61,7 @@ export class CartComponent implements OnInit {
    return this.totalCost;
  }
  checkout() : void {
+   this.updateStock();
    let newArray : ItemsToPurchase[] = []
    let cartLength : number = this.userService.signedIn.cart.length;
    for (let start : number = 0; start < cartLength; start++){
@@ -70,6 +71,16 @@ export class CartComponent implements OnInit {
     this.ngOnInit()
     this.mess.push(this.checkoutMessage1);
     this.mess.push(this.checkoutmessage2);
+ }
+ updateStock() : void {
+  let cartLength : number = this.userService.signedIn.cart.length;
+  for (let start : number = 0; start < cartLength; start++){
+    let amountToDrop : number = (this.userService.signedIn.cart[start].amount * -1);
+    let id : number = this.userService.signedIn.cart[start].item.id
+    let dataItem : Item = new Item();
+    this.itemService.getItemByID(id).subscribe(data => dataItem = data);
+    this.itemService.updateItemStock(dataItem,  amountToDrop);
+  }
  }
 
 }
