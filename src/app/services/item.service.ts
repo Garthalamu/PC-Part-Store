@@ -56,6 +56,20 @@ export class ItemService {
       this.http.post(this.dbURL, item).subscribe(data => console.log(data));
     });
   }
+  updateItemStock(item: Item, changeAmount: number) {
+    var currentItems: Item[] = [];
+    this.getItems().subscribe(data => currentItems = data);
+
+    delete currentItems[currentItems.indexOf(item)];
+    item.stockAmount += changeAmount;
+    currentItems.push(item);
+
+    this.http.delete(this.dbURL).subscribe( data => {
+      for (let i of currentItems) {
+        this.http.post(this.dbURL, i).subscribe();
+      }
+    });
+  }
 /*
   getName(item : Item) : String {
     return item.name;
