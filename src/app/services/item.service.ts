@@ -24,6 +24,26 @@ export class ItemService {
     );
   }
 
+  /**
+   * Updates and changes a specific Items stock.
+   * @param item The item to change stock amount
+   * @param changeAmount changes the current stock amount.  Use a negative number to subtract from the current stock.
+   */
+  updateItemStock(item: Item, changeAmount: number) {
+    var currentItems: Item[] = [];
+    this.getItems().subscribe(data => currentItems = data);
+
+    delete currentItems[currentItems.indexOf(item)];
+    item.stockAmount += changeAmount;
+    currentItems.push(item);
+
+    this.http.delete(this.dbURL).subscribe( data => {
+      for (let i of currentItems) {
+        this.http.post(this.dbURL, i).subscribe();
+      }
+    });
+  }
+
   getItemByID(id: number) {
     return this.http.get<Item[]>(this.dbURL).pipe(
       map((response) => {
